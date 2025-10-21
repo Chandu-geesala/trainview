@@ -153,6 +153,50 @@
       font-weight: 600;
     }
 
+    /* CTA Button for Pitch Deck */
+    .cta-button {
+      display: inline-block;
+      background: linear-gradient(135deg, #00d4ff 0%, #0099ff 100%);
+      color: #ffffff;
+      padding: 16px 40px;
+      margin-top: 25px;
+      border-radius: 50px;
+      text-decoration: none;
+      font-weight: 700;
+      font-size: 1.15rem;
+      transition: all 0.3s ease;
+      box-shadow: 0 6px 25px rgba(0, 153, 255, 0.4);
+      border: 2px solid rgba(255, 255, 255, 0.3);
+      letter-spacing: 0.5px;
+      position: relative;
+      overflow: hidden;
+    }
+
+    .cta-button::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: -100%;
+      width: 100%;
+      height: 100%;
+      background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.3), transparent);
+      transition: left 0.5s ease;
+    }
+
+    .cta-button:hover::before {
+      left: 100%;
+    }
+
+    .cta-button:hover {
+      transform: translateY(-3px) scale(1.05);
+      box-shadow: 0 10px 35px rgba(0, 153, 255, 0.6);
+      background: linear-gradient(135deg, #00e5ff 0%, #00aaff 100%);
+    }
+
+    .cta-button:active {
+      transform: translateY(-1px) scale(1.02);
+    }
+
     /* Contact section specific styling */
     .contact-info {
       margin-top: 25px;
@@ -208,6 +252,11 @@
       section p {
         font-size: 1rem;
       }
+
+      .cta-button {
+        padding: 14px 30px;
+        font-size: 1rem;
+      }
     }
 
     @media (max-width: 480px) {
@@ -221,6 +270,11 @@
 
       header {
         padding: 60px 15px 30px;
+      }
+
+      .cta-button {
+        padding: 12px 25px;
+        font-size: 0.95rem;
       }
     }
   </style>
@@ -248,6 +302,15 @@
       the missing reality — <strong>visual, user-driven insights</strong> about
       what's actually happening inside trains.
     </p>
+  </section>
+
+  <section>
+    <h2>Pitch Presentation</h2>
+    <p>
+      Want to learn more about TrainView's vision, market opportunity, and business model? 
+      Check out our complete pitch deck below.
+    </p>
+    <a href="https://gamma.app/docs/TrainView-a0b8jysbde8qv6v" class="cta-button" target="_blank">📊 View Pitch Deck</a>
   </section>
 
   <section>
