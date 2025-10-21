@@ -5,57 +5,223 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>TrainView – Real-Time Train Insights</title>
   <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
     body {
-      font-family: 'Segoe UI', sans-serif;
-      background: linear-gradient(135deg, #1d3557, #457b9d);
-      color: #f1faee;
+      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+      background: linear-gradient(135deg, #667eea 0%, #764ba2 50%, #f093fb 100%);
+      color: #ffffff;
       margin: 0;
       padding: 0;
       text-align: center;
+      min-height: 100vh;
+      overflow-x: hidden;
     }
+
+    /* Animated background pattern */
+    body::before {
+      content: '';
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background: 
+        radial-gradient(circle at 20% 50%, rgba(255, 255, 255, 0.1) 0%, transparent 50%),
+        radial-gradient(circle at 80% 80%, rgba(255, 255, 255, 0.1) 0%, transparent 50%);
+      animation: float 20s ease-in-out infinite;
+      pointer-events: none;
+      z-index: 0;
+    }
+
+    @keyframes float {
+      0%, 100% { transform: translateY(0px); }
+      50% { transform: translateY(-20px); }
+    }
+
     header {
-      padding: 60px 20px 30px;
+      padding: 80px 20px 40px;
+      position: relative;
+      z-index: 1;
     }
+
     h1 {
-      font-size: 2.5rem;
-      margin-bottom: 10px;
+      font-size: 3.5rem;
+      margin-bottom: 15px;
+      font-weight: 700;
+      text-shadow: 2px 4px 12px rgba(0, 0, 0, 0.3);
+      letter-spacing: -1px;
+      animation: fadeInDown 1s ease-out;
     }
+
+    @keyframes fadeInDown {
+      from {
+        opacity: 0;
+        transform: translateY(-30px);
+      }
+      to {
+        opacity: 1;
+        transform: translateY(0);
+      }
+    }
+
     p.tagline {
-      font-size: 1.2rem;
-      color: #a8dadc;
+      font-size: 1.4rem;
+      color: rgba(255, 255, 255, 0.9);
+      font-weight: 300;
+      letter-spacing: 0.5px;
+      animation: fadeIn 1.5s ease-out;
     }
+
+    @keyframes fadeIn {
+      from { opacity: 0; }
+      to { opacity: 1; }
+    }
+
+    /* Glassmorphism sections */
     section {
-      max-width: 800px;
-      margin: 40px auto;
-      background: rgba(255,255,255,0.1);
-      border-radius: 16px;
-      padding: 30px;
-      box-shadow: 0 4px 20px rgba(0,0,0,0.2);
+      max-width: 850px;
+      margin: 30px auto;
+      background: rgba(255, 255, 255, 0.15);
+      backdrop-filter: blur(10px);
+      -webkit-backdrop-filter: blur(10px);
+      border-radius: 20px;
+      padding: 40px 35px;
+      box-shadow: 0 8px 32px rgba(0, 0, 0, 0.2);
+      border: 1px solid rgba(255, 255, 255, 0.18);
+      position: relative;
+      z-index: 1;
+      transition: transform 0.3s ease, box-shadow 0.3s ease;
+      animation: fadeInUp 0.8s ease-out backwards;
     }
+
+    section:nth-child(2) { animation-delay: 0.2s; }
+    section:nth-child(3) { animation-delay: 0.4s; }
+    section:nth-child(4) { animation-delay: 0.6s; }
+
+    @keyframes fadeInUp {
+      from {
+        opacity: 0;
+        transform: translateY(30px);
+      }
+      to {
+        opacity: 1;
+        transform: translateY(0);
+      }
+    }
+
+    section:hover {
+      transform: translateY(-5px);
+      box-shadow: 0 12px 40px rgba(0, 0, 0, 0.3);
+    }
+
     h2 {
-      color: #f1faee;
-      border-bottom: 2px solid #a8dadc;
+      color: #ffffff;
+      font-size: 1.8rem;
+      margin-bottom: 20px;
+      font-weight: 600;
+      position: relative;
       display: inline-block;
-      padding-bottom: 6px;
+      padding-bottom: 10px;
     }
-    .btn {
-      display: inline-block;
-      background: #e63946;
-      color: white;
-      padding: 12px 30px;
-      margin-top: 20px;
-      border-radius: 25px;
+
+    h2::after {
+      content: '';
+      position: absolute;
+      bottom: 0;
+      left: 0;
+      width: 100%;
+      height: 3px;
+      background: linear-gradient(90deg, #ffffff 0%, rgba(255, 255, 255, 0.5) 100%);
+      border-radius: 2px;
+    }
+
+    section p {
+      font-size: 1.1rem;
+      line-height: 1.8;
+      color: rgba(255, 255, 255, 0.95);
+      text-align: left;
+      margin-top: 15px;
+    }
+
+    section p strong {
+      color: #ffffff;
+      font-weight: 600;
+    }
+
+    /* Contact section specific styling */
+    .contact-info {
+      margin-top: 25px;
+    }
+
+    .contact-info p {
+      text-align: center;
+      font-size: 1.15rem;
+      margin: 12px 0;
+    }
+
+    .email-link {
+      color: #ffd700;
       text-decoration: none;
-      font-weight: bold;
-      transition: 0.3s;
+      font-weight: 600;
+      transition: color 0.3s ease;
+      position: relative;
     }
-    .btn:hover {
-      background: #d62839;
+
+    .email-link:hover {
+      color: #ffed4e;
+      text-decoration: underline;
     }
+
     footer {
-      padding: 20px;
-      font-size: 0.9rem;
-      color: #a8dadc;
+      padding: 40px 20px 30px;
+      font-size: 0.95rem;
+      color: rgba(255, 255, 255, 0.8);
+      position: relative;
+      z-index: 1;
+      margin-top: 40px;
+    }
+
+    /* Responsive design */
+    @media (max-width: 768px) {
+      h1 {
+        font-size: 2.5rem;
+      }
+
+      p.tagline {
+        font-size: 1.1rem;
+      }
+
+      section {
+        margin: 20px 15px;
+        padding: 30px 25px;
+      }
+
+      h2 {
+        font-size: 1.5rem;
+      }
+
+      section p {
+        font-size: 1rem;
+      }
+    }
+
+    @media (max-width: 480px) {
+      h1 {
+        font-size: 2rem;
+      }
+
+      p.tagline {
+        font-size: 1rem;
+      }
+
+      header {
+        padding: 60px 15px 30px;
+      }
     }
   </style>
 </head>
@@ -80,15 +246,16 @@
     <p>
       While apps like IRCTC and WhereIsMyTrain show schedules, TrainView adds
       the missing reality — <strong>visual, user-driven insights</strong> about
-      what’s actually happening inside trains.
+      what's actually happening inside trains.
     </p>
   </section>
 
   <section>
     <h2>Contact</h2>
-    <p><strong>Founder:</strong> Chandu Geesala</p>
-    <p><strong>Email:</strong> yourmail@example.com</p>
-    <a href="https://github.com/Chandu-geesala/trainview" class="btn" target="_blank">View on GitHub</a>
+    <div class="contact-info">
+      <p><strong>Founder:</strong> Chandu Geesala</p>
+      <p><strong>Email:</strong> <a href="mailto:chandugeesala0@gmail.com" class="email-link">chandugeesala0@gmail.com</a></p>
+    </div>
   </section>
 
   <footer>
