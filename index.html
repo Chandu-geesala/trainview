@@ -1,10 +1,12 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>TrainView – Real-Time Train Insights</title>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>E-Token Generator - RGUKT Srikakulam</title>
   <style>
+    @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap');
+    
     * {
       margin: 0;
       padding: 0;
@@ -12,317 +14,328 @@
     }
 
     body {
-      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-      background: linear-gradient(135deg, #667eea 0%, #764ba2 50%, #f093fb 100%);
-      color: #ffffff;
-      margin: 0;
-      padding: 0;
-      text-align: center;
+      font-family: 'Poppins', 'Arial', sans-serif;
+      background: linear-gradient(135deg, #d32f2f, #c62828, #b71c1c);
+      color: #fff;
+      padding: 30px 20px;
       min-height: 100vh;
-      overflow-x: hidden;
     }
 
-    /* Animated background pattern */
-    body::before {
-      content: '';
-      position: fixed;
-      top: 0;
-      left: 0;
-      width: 100%;
-      height: 100%;
-      background: 
-        radial-gradient(circle at 20% 50%, rgba(255, 255, 255, 0.1) 0%, transparent 50%),
-        radial-gradient(circle at 80% 80%, rgba(255, 255, 255, 0.1) 0%, transparent 50%);
-      animation: float 20s ease-in-out infinite;
-      pointer-events: none;
-      z-index: 0;
-    }
-
-    @keyframes float {
-      0%, 100% { transform: translateY(0px); }
-      50% { transform: translateY(-20px); }
-    }
-
-    header {
-      padding: 80px 20px 40px;
-      position: relative;
-      z-index: 1;
-    }
-
-    h1 {
-      font-size: 3.5rem;
-      margin-bottom: 15px;
-      font-weight: 700;
-      text-shadow: 2px 4px 12px rgba(0, 0, 0, 0.3);
-      letter-spacing: -1px;
-      animation: fadeInDown 1s ease-out;
-    }
-
-    @keyframes fadeInDown {
-      from {
-        opacity: 0;
-        transform: translateY(-30px);
-      }
-      to {
-        opacity: 1;
-        transform: translateY(0);
-      }
-    }
-
-    p.tagline {
-      font-size: 1.4rem;
-      color: rgba(255, 255, 255, 0.9);
-      font-weight: 300;
-      letter-spacing: 0.5px;
-      animation: fadeIn 1.5s ease-out;
-    }
-
-    @keyframes fadeIn {
-      from { opacity: 0; }
-      to { opacity: 1; }
-    }
-
-    /* Glassmorphism sections */
-    section {
-      max-width: 850px;
-      margin: 30px auto;
-      background: rgba(255, 255, 255, 0.15);
+    /* Input Form Section */
+    .input-section {
+      max-width: 500px;
+      margin: 0 auto 30px;
+      background: rgba(255, 255, 255, 0.1);
       backdrop-filter: blur(10px);
-      -webkit-backdrop-filter: blur(10px);
       border-radius: 20px;
-      padding: 40px 35px;
-      box-shadow: 0 8px 32px rgba(0, 0, 0, 0.2);
-      border: 1px solid rgba(255, 255, 255, 0.18);
-      position: relative;
-      z-index: 1;
-      transition: transform 0.3s ease, box-shadow 0.3s ease;
-      animation: fadeInUp 0.8s ease-out backwards;
+      padding: 30px;
+      box-shadow: 0 15px 35px rgba(0, 0, 0, 0.3);
     }
 
-    section:nth-child(2) { animation-delay: 0.2s; }
-    section:nth-child(3) { animation-delay: 0.4s; }
-    section:nth-child(4) { animation-delay: 0.6s; }
-
-    @keyframes fadeInUp {
-      from {
-        opacity: 0;
-        transform: translateY(30px);
-      }
-      to {
-        opacity: 1;
-        transform: translateY(0);
-      }
-    }
-
-    section:hover {
-      transform: translateY(-5px);
-      box-shadow: 0 12px 40px rgba(0, 0, 0, 0.3);
-    }
-
-    h2 {
-      color: #ffffff;
-      font-size: 1.8rem;
-      margin-bottom: 20px;
-      font-weight: 600;
-      position: relative;
-      display: inline-block;
-      padding-bottom: 10px;
-    }
-
-    h2::after {
-      content: '';
-      position: absolute;
-      bottom: 0;
-      left: 0;
-      width: 100%;
-      height: 3px;
-      background: linear-gradient(90deg, #ffffff 0%, rgba(255, 255, 255, 0.5) 100%);
-      border-radius: 2px;
-    }
-
-    section p {
-      font-size: 1.1rem;
-      line-height: 1.8;
-      color: rgba(255, 255, 255, 0.95);
-      text-align: left;
-      margin-top: 15px;
-    }
-
-    section p strong {
-      color: #ffffff;
-      font-weight: 600;
-    }
-
-    /* CTA Button for Pitch Deck */
-    .cta-button {
-      display: inline-block;
-      background: linear-gradient(135deg, #00d4ff 0%, #0099ff 100%);
-      color: #ffffff;
-      padding: 16px 40px;
-      margin-top: 25px;
-      border-radius: 50px;
-      text-decoration: none;
-      font-weight: 700;
-      font-size: 1.15rem;
-      transition: all 0.3s ease;
-      box-shadow: 0 6px 25px rgba(0, 153, 255, 0.4);
-      border: 2px solid rgba(255, 255, 255, 0.3);
-      letter-spacing: 0.5px;
-      position: relative;
-      overflow: hidden;
-    }
-
-    .cta-button::before {
-      content: '';
-      position: absolute;
-      top: 0;
-      left: -100%;
-      width: 100%;
-      height: 100%;
-      background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.3), transparent);
-      transition: left 0.5s ease;
-    }
-
-    .cta-button:hover::before {
-      left: 100%;
-    }
-
-    .cta-button:hover {
-      transform: translateY(-3px) scale(1.05);
-      box-shadow: 0 10px 35px rgba(0, 153, 255, 0.6);
-      background: linear-gradient(135deg, #00e5ff 0%, #00aaff 100%);
-    }
-
-    .cta-button:active {
-      transform: translateY(-1px) scale(1.02);
-    }
-
-    /* Contact section specific styling */
-    .contact-info {
-      margin-top: 25px;
-    }
-
-    .contact-info p {
+    .input-section h1 {
       text-align: center;
-      font-size: 1.15rem;
-      margin: 12px 0;
+      font-size: 28px;
+      margin-bottom: 10px;
+      font-weight: 700;
     }
 
-    .email-link {
-      color: #ffd700;
-      text-decoration: none;
+    .input-section p {
+      text-align: center;
+      font-size: 14px;
+      opacity: 0.9;
+      margin-bottom: 25px;
+    }
+
+    .form-group {
+      margin-bottom: 20px;
+    }
+
+    .form-group label {
+      display: block;
+      font-size: 16px;
+      font-weight: 500;
+      margin-bottom: 8px;
+    }
+
+    .form-group input {
+      width: 100%;
+      padding: 12px 15px;
+      font-size: 16px;
+      border: none;
+      border-radius: 10px;
+      background: rgba(255, 255, 255, 0.9);
+      color: #333;
+      font-family: 'Poppins', sans-serif;
+    }
+
+    .form-group input:focus {
+      outline: none;
+      background: #fff;
+      box-shadow: 0 0 0 3px rgba(255, 255, 255, 0.3);
+    }
+
+    .generate-btn {
+      width: 100%;
+      padding: 15px;
+      font-size: 18px;
       font-weight: 600;
-      transition: color 0.3s ease;
-      position: relative;
+      background: linear-gradient(135deg, #fff, #f0f0f0);
+      color: #c62828;
+      border: none;
+      border-radius: 10px;
+      cursor: pointer;
+      transition: all 0.3s ease;
+      font-family: 'Poppins', sans-serif;
     }
 
-    .email-link:hover {
-      color: #ffed4e;
-      text-decoration: underline;
+    .generate-btn:hover {
+      transform: translateY(-2px);
+      box-shadow: 0 8px 20px rgba(0, 0, 0, 0.3);
     }
 
-    footer {
-      padding: 40px 20px 30px;
-      font-size: 0.95rem;
-      color: rgba(255, 255, 255, 0.8);
-      position: relative;
-      z-index: 1;
-      margin-top: 40px;
+    .generate-btn:active {
+      transform: translateY(0);
     }
 
-    /* Responsive design */
-    @media (max-width: 768px) {
-      h1 {
-        font-size: 2.5rem;
-      }
-
-      p.tagline {
-        font-size: 1.1rem;
-      }
-
-      section {
-        margin: 20px 15px;
-        padding: 30px 25px;
-      }
-
-      h2 {
-        font-size: 1.5rem;
-      }
-
-      section p {
-        font-size: 1rem;
-      }
-
-      .cta-button {
-        padding: 14px 30px;
-        font-size: 1rem;
-      }
+    /* Token Display Section - Same as Email */
+    .token-display {
+      display: none;
+      max-width: 650px;
+      margin: 0 auto;
     }
 
-    @media (max-width: 480px) {
-      h1 {
-        font-size: 2rem;
-      }
+    .container {
+      background: rgba(255, 255, 255, 0.08);
+      backdrop-filter: blur(10px);
+      border-radius: 20px;
+      box-shadow: 0 15px 35px rgba(0, 0, 0, 0.2);
+    }
 
-      p.tagline {
-        font-size: 1rem;
-      }
+    .header {
+      text-align: center;
+      padding: 30px 25px;
+      background: linear-gradient(135deg, #b71c1c, #c62828, #d32f2f);
+      border-radius: 20px 20px 0 0;
+    }
 
-      header {
-        padding: 60px 15px 30px;
-      }
+    .header h1 {
+      font-size: 32px;
+      font-weight: 700;
+      margin: 0;
+    }
 
-      .cta-button {
-        padding: 12px 25px;
-        font-size: 0.95rem;
+    .header h2 {
+      font-size: 18px;
+      opacity: 0.9;
+      margin: 10px 0 0 0;
+    }
+
+    .content {
+      background: #ffffff;
+      padding: 35px 30px;
+      border-radius: 0 0 20px 20px;
+      color: #333;
+    }
+
+    .greeting {
+      font-size: 20px;
+      color: #c62828;
+      margin-bottom: 20px;
+      font-weight: 500;
+      border-left: 4px solid #d32f2f;
+      padding-left: 15px;
+    }
+
+    .token-container {
+      background: linear-gradient(to bottom, #ffebee, #ffcdd2);
+      border-radius: 18px;
+      padding: 25px;
+      box-shadow: 0 8px 20px rgba(0, 0, 0, 0.05);
+      text-align: center;
+    }
+
+    .token-label {
+      display: inline-block;
+      background: #c62828;
+      color: white;
+      padding: 6px 15px;
+      border-radius: 30px;
+      font-size: 14px;
+      font-weight: 500;
+      margin-bottom: 20px;
+    }
+
+    .qr-container {
+      margin: 20px 0;
+    }
+
+    .qr-code {
+      max-width: 220px;
+      height: auto;
+      border-radius: 12px;
+      padding: 12px;
+      background: white;
+      box-shadow: 0 8px 25px rgba(0, 0, 0, 0.15);
+    }
+
+    .footer {
+      text-align: center;
+      padding: 25px;
+      background: linear-gradient(135deg, #b71c1c, #c62828, #d32f2f);
+      color: white;
+      margin-top: 20px;
+      border-radius: 20px;
+    }
+
+    .signature {
+      font-size: 18px;
+      font-weight: 600;
+      margin: 0;
+    }
+
+    .department {
+      font-size: 16px;
+      margin: 5px 0 0 0;
+    }
+
+    .reset-btn {
+      display: block;
+      margin: 20px auto 0;
+      padding: 12px 30px;
+      font-size: 16px;
+      font-weight: 600;
+      background: rgba(255, 255, 255, 0.2);
+      color: white;
+      border: 2px solid white;
+      border-radius: 10px;
+      cursor: pointer;
+      transition: all 0.3s ease;
+      font-family: 'Poppins', sans-serif;
+    }
+
+    .reset-btn:hover {
+      background: white;
+      color: #c62828;
+    }
+
+    @media (max-width: 600px) {
+      .header h1 {
+        font-size: 24px;
+      }
+      
+      .header h2 {
+        font-size: 16px;
+      }
+      
+      .content {
+        padding: 25px 20px;
       }
     }
   </style>
 </head>
 <body>
-  <header>
-    <h1>🚆 TrainView</h1>
-    <p class="tagline">Real-time train journey insights from real passengers</p>
-  </header>
+  
+  <!-- Input Form Section -->
+  <div class="input-section" id="inputSection">
+    <h1>🎫 E-Token Generator</h1>
+    <p>RGUKT Srikakulam - Mess Access System</p>
+    
+    <form id="tokenForm" onsubmit="generateToken(event)">
+      <div class="form-group">
+        <label for="studentId">Enter Student ID:</label>
+        <input 
+          type="text" 
+          id="studentId" 
+          name="studentId" 
+          placeholder="e.g., rs200357" 
+          required
+          pattern="^[a-zA-Z0-9]+$"
+          title="Only letters and numbers allowed"
+        >
+      </div>
+      
+      <button type="submit" class="generate-btn">
+        Generate E-Token
+      </button>
+    </form>
+  </div>
 
-  <section>
-    <h2>About the Idea</h2>
-    <p>
-      TrainView lets passengers upload short videos during their train journey —
-      showing live crowd levels, coach cleanliness, and station experiences.
-      Other travelers can view these clips before boarding, helping them plan smarter
-      and travel with confidence.
-    </p>
-  </section>
+  <!-- Token Display Section -->
+  <div class="token-display" id="tokenDisplay">
+    <div class="container">
+      <div class="header">
+        <h1>E-Token Notification</h1>
+        <h2 id="currentDate"></h2>
+      </div>
 
-  <section>
-    <h2>Why It Matters</h2>
-    <p>
-      While apps like IRCTC and WhereIsMyTrain show schedules, TrainView adds
-      the missing reality — <strong>visual, user-driven insights</strong> about
-      what's actually happening inside trains.
-    </p>
-  </section>
+      <div class="content">
+        <p class="greeting">Dear <strong id="displayStudentId"></strong>,</p>
 
-  <section>
-    <h2>Pitch Presentation</h2>
-    <p>
-      Want to learn more about TrainView's vision, market opportunity, and business model? 
-      Check out our complete pitch deck below.
-    </p>
-    <a href="https://gamma.app/docs/TrainView-a0b8jysbde8qv6v" class="cta-button" target="_blank">📊 View Pitch Deck</a>
-  </section>
+        <div class="token-container">
+          <div class="token-label">Your Unique Access Token</div>
+          <div class="qr-container">
+            <img id="qrCodeImage" src="" alt="QR Code" class="qr-code" />
+          </div>
+        </div>
+      </div>
 
-  <section>
-    <h2>Contact</h2>
-    <div class="contact-info">
-      <p><strong>Founder:</strong> Chandu Geesala</p>
-      <p><strong>Email:</strong> <a href="mailto:chandugeesala0@gmail.com" class="email-link">chandugeesala0@gmail.com</a></p>
+      <div class="footer">
+        <p class="signature">Warm Regards,</p>
+        <p class="department">Mess Office</p>
+      </div>
     </div>
-  </section>
 
-  <footer>
-    © 2025 TrainView. All Rights Reserved.
-  </footer>
+    <button class="reset-btn" onclick="resetForm()">
+      Generate Another Token
+    </button>
+  </div>
+
+  <script>
+    function generateToken(event) {
+      event.preventDefault(); // Prevent form submission
+      
+      // Get student ID from input
+      const studentId = document.getElementById('studentId').value.trim();
+      
+      if (!studentId) {
+        alert('Please enter a valid Student ID');
+        return;
+      }
+      
+      // Update display with student ID
+      document.getElementById('displayStudentId').textContent = studentId;
+      
+      // Generate QR code URL
+      const qrCodeUrl = `https://api.qrserver.com/v1/create-qr-code/?size=220x220&data=${encodeURIComponent(studentId)}`;
+      document.getElementById('qrCodeImage').src = qrCodeUrl;
+      
+      // Set current date
+      const currentDate = new Date().toLocaleDateString('en-US', {
+        year: 'numeric',
+        month: 'long',
+        day: 'numeric'
+      });
+      document.getElementById('currentDate').textContent = currentDate;
+      
+      // Hide input section and show token display
+      document.getElementById('inputSection').style.display = 'none';
+      document.getElementById('tokenDisplay').style.display = 'block';
+      
+      // Smooth scroll to top
+      window.scrollTo({ top: 0, behavior: 'smooth' });
+    }
+    
+    function resetForm() {
+      // Clear form
+      document.getElementById('tokenForm').reset();
+      
+      // Show input section and hide token display
+      document.getElementById('inputSection').style.display = 'block';
+      document.getElementById('tokenDisplay').style.display = 'none';
+      
+      // Smooth scroll to top
+      window.scrollTo({ top: 0, behavior: 'smooth' });
+    }
+  </script>
 </body>
 </html>
